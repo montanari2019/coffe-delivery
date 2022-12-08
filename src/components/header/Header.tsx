@@ -1,7 +1,7 @@
 
 import logoCoffe from "../../../public/coffe-delivery-logo.svg"
 import { MapPin, ShoppingCart } from "phosphor-react"
-import { Badge, CartLogo,Location , HeaderLayout, LocationAndCartContainer } from "./styled"
+import { Badge, CartLogo, Location, HeaderLayout, LocationAndCartContainer, CartAjust } from "./styled"
 
 export function Header() {
     return (
@@ -14,16 +14,16 @@ export function Header() {
 
             <LocationAndCartContainer>
                 <Location>
-                    <MapPin size={25} />
+                    <MapPin size={25} weight="fill" />
                     <p>Porto Alegre, RS</p>
                 </Location>
 
-                <div>
-                    {/* <Badge>3</Badge> */}
+                <CartAjust>
+                    <Badge>3</Badge>
                     <CartLogo>
-                        <ShoppingCart size={28} />
+                        <ShoppingCart size={28} weight="fill" />
                     </CartLogo>
-                </div>
+                </CartAjust>
 
             </LocationAndCartContainer>
         </HeaderLayout>

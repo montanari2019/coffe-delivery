@@ -1,7 +1,13 @@
 import styled from "styled-components"
 
-export const HeaderContainer = styled.header`
+export const MarginContainer = styled.header`
 
-    margin: 0 10rem;
+    margin: 0 1rem;
+
+    @media (min-width: 1025px) {
+        margin: 0 10rem;
+    }
+
+
 
 `

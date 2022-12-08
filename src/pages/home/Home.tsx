@@ -1,7 +1,11 @@
+import { HeaderHome } from "./components/headerHome/HeaderHome";
+import { ItensHome } from "./components/ItensHome/ItensHome";
+
 export function Home(){
     return(
         <div>
-            <h1>Home pages</h1>
+            <HeaderHome/>
+            <ItensHome/>
         </div>
     )
 }

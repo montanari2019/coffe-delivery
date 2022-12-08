@@ -42,12 +42,24 @@ export const Location = styled.div`
 
 export const Badge = styled.span`
     /* z-index: 1; */
+    position: absolute;
+    display:flex;
+    top: 22px;
+    /* left: 90.7%; */
+    justify-content:center;
     padding: 0 0.3rem;
     width: 20px;
-    height: 10px;
+    height: 20px;
     border-radius: 50%;
     color: ${props => props.theme.white};
     background: ${props => props.theme["yellow-dark"]};
+
+`
+
+export const CartAjust = styled.div`
+    display:flex;
+    justify-content: flex-end;
+
 
 `
 
