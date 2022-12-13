@@ -1,50 +1,64 @@
-    import { ShoppingCart } from "phosphor-react";
-    import { MarginContainer } from "../../../../layouts/styled";
-    import { HeaderBackground, HeaderContainer, CardIcon, CardConatiner, Title } from "./styledHeaderHome";
-    import imagemCoffe from "../../../../../public/Imagem-coffe.png"
+import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
+import { MarginContainer } from "../../../../layouts/styled";
+import { HeaderBackground, HeaderContainer, CardIcon, CardConatiner, Title, TitleAndContainer,CardDisplay, Imagen } from "./styledHeaderHome";
+import imagemCoffe from "../../../../../public/Imagem-coffe.png"
 
-    export function HeaderHome() {
-        return (
-            <div>
-                <HeaderBackground>
-                </HeaderBackground>
+export function HeaderHome() {
+    return (
+        <div>
+            <HeaderBackground>
+            </HeaderBackground>
 
-                <MarginContainer>
+            <MarginContainer>
 
-                    <HeaderContainer>
+                <HeaderContainer>
 
+                    <TitleAndContainer>
                         <div>
                             <Title>Encontre o café perfeito para qualquer hora do dia</Title>
                             <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
 
-                            <div>
+                            <CardDisplay>
                                 <CardConatiner>
-                                    <CardIcon>
+                                    <CardIcon iconColor="yellow_Dark">
                                         <ShoppingCart size={15} weight="fill" />
                                     </CardIcon>
                                     <span>Compra simples e segura</span>
                                 </CardConatiner>
 
                                 <CardConatiner>
-                                    <CardIcon>
-                                        <ShoppingCart size={15} weight="fill" />
+                                    <CardIcon iconColor="yellow">
+                                        <Timer  size={15} weight="fill" />
                                     </CardIcon>
-                                    <span>Compra simples e segura</span>
+                                    <span>Entrega rápida e rastreada</span>
                                 </CardConatiner>
 
                                 <CardConatiner>
-                                    <CardIcon>
-                                        <ShoppingCart size={15} weight="fill" />
+                                    <CardIcon iconColor="gray">
+                                        <Package  size={15} weight="fill" />
                                     </CardIcon>
-                                    <span>Compra simples e segura</span>
+                                    <span>Embalagem mantém o café intacto</span>
                                 </CardConatiner>
-                            </div>
+
+                                <CardConatiner>
+                                    <CardIcon iconColor="purple">
+                                        <Coffee  size={15} weight="fill" />
+                                    </CardIcon>
+                                    <span>O café chega fresquinho até você</span>
+                                </CardConatiner>
+                            </CardDisplay>
+
                         </div>
-                        {/* <img src={imagemCoffe} alt="" /> */}
-                    </HeaderContainer>
+
+                        
+
+                        <Imagen src={imagemCoffe} alt="" />
+
+                    </TitleAndContainer>
+                </HeaderContainer>
 
 
-                </MarginContainer>
-            </div>
-        )
-    }
+            </MarginContainer>
+        </div>
+    )
+}
