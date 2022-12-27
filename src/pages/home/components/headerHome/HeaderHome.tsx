@@ -1,7 +1,6 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
-import { MarginContainer } from "../../../../layouts/styled";
 import { HeaderBackground, HeaderContainer, CardIcon, CardConatiner, Title, TitleAndContainer,CardDisplay, Imagen } from "./styledHeaderHome";
-import imagemCoffe from "../../../../../public/Imagem-coffe.png"
+import imagemCoffe from "../../../../assets/Imagem-coffe.png"
 
 export function HeaderHome() {
     return (
@@ -9,7 +8,7 @@ export function HeaderHome() {
             <HeaderBackground>
             </HeaderBackground>
 
-            <MarginContainer>
+            
 
                 <HeaderContainer>
 
@@ -58,7 +57,7 @@ export function HeaderHome() {
                 </HeaderContainer>
 
 
-            </MarginContainer>
+            
         </div>
     )
 }

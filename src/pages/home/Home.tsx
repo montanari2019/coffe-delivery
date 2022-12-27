@@ -1,11 +1,16 @@
+import { MarginContainer } from "../../layouts/styled";
 import { HeaderHome } from "./components/headerHome/HeaderHome";
-import { ItensHome } from "./components/ItensHome/ItensHome";
+import { ItensList } from "./components/ItensList/ItemList";
 
-export function Home(){
-    return(
+
+export function Home() {
+    return (
         <div>
-            <HeaderHome/>
-            <ItensHome/>
+        
+                <HeaderHome />
+                <ItensList />
+       
+
         </div>
     )
 }

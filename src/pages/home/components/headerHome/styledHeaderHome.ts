@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import background from "../../../../../public/Background.png"
+import background from "../../../../assets/Background.png"
 
 export const HeaderBackground = styled.div`
      z-index: -1;
@@ -8,7 +8,7 @@ export const HeaderBackground = styled.div`
      background-repeat: no-repeat;
      background-size: cover;
      filter: blur(70px);
-     width: 100%;
+     width: 90%;
      height: 50vh;
      position: absolute;
 

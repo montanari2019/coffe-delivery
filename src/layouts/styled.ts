@@ -6,6 +6,7 @@ export const MarginContainer = styled.header`
 
     @media (min-width: 1025px) {
         margin: 0 10rem;
+  
     }
 
 
