@@ -1,46 +1,101 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+    <img max-width="320px"  src="./public/coffe-delivery-logo.svg" />
+</div>
+<h1 align="center" >Coffe Delivery</h1 >
 
-## Available Scripts
 
-In the project directory, you can run:
+<h2 style="" >Tabela de Conteúdo</h2>
 
-### `npm start`
+<ul>
+   <li><a href="#tabela">Tabela de Conteúdo</a></li>
+   <li><a href="#sobre">Sobre</a></li>
+   <li><a href="#demonstração">Demonstração</a></li>
+   <li><a href="#tecnologias">Tecnologias</a></li>
+   <li><a href="#requisitos">Requisitos</a></li>
+   <li><a href="#licença">Licença</a></li>
+   <li><a href="#autor">Autor</a></li>
+   <li><a href="#contato">Contato</a></li>
+</ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+# Sobre
+<p dir="auto">Projeto desenvolvido junto ao curso ignite da <a target="_blank" href="https://www.rocketseat.com.br/">Rocketseat💜</a>, que aplicamos conceitos de styled Component avançando no react aplicando na prática modelos como UseEffect, UseReduce,entre outros como roteamento aplicando o Outletdisponível a partir da versão v6 do react router dom.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Ressalto que a aplicação ainda estáem construção </p>
 
-### `npm run build`
+<p> <a target="_blank" href="https://github.com/montanari2019/coffe-delivery">Click Aqui para acessar oreposítório da aplicação</a> </p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Demonstração
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- <img style="" src="./public/test-mobile.gif" /> -->
 
-### `npm run eject`
+</br>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p>Responsividade</p>
+<!-- <img style="" src="./public/test-responsive.gif" /> -->
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Tecnologias
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<ul>
+   <li>
+    <a target="_blank" href="https://create-react-app.dev/">React Create App</a>
+     
+   </li>
+   <li>
+        <a  target="_blank"href="https://www.typescriptlang.org/">TypeScript</a>
+        
+   </li>
+   <li>
+    <a target="_blank" href="https://www.npmjs.com/">Npm</a>
+    
+</ul>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Requisitos
+
+<ul>
+   <li>Possuir Node.js versão LTS instalada</li>
+   <li>Possuir NPM instalado (normalmente vem junto ao node.js)</li>
+   <li>Seguir os passos abaixo</li>
+   
+ <br/>
+
+      #clone este repositório
+      $ git clone <https://github.com/montanari2019/coffe-delivery>
+
+      # Acesse a pasta do projeto no terminal/cmd
+      $ cd codeby-test-final
+
+      # Instale as dependências com o comando
+      $ npm install
+
+      # Execute a aplicação em modo de desenvolvimento
+      $ npm run dev
+
+      # Servidor ira executar na porta indicada - acesse <http://localhost: porta indiciada/>
+
+</ul>
+
+# Licença
+
+<p dir="auto">Distribuído sob a licença MIT. Veja <code>LICENSE</code> para mais informações.</p>
+
+# Autor
+
+<p dir="auto">Ikaro Montanari, entusiasta por tecnologia e desenvolvedor front-end</p>
+<p dir="auto">Formado em Análie e Desenvolvimento de Sistemas pelo IFRO em Vilhena-RO</p>
+
+
+# Contato
+
+<p>Linkedin <a target="_blank" href="https://www.linkedin.com/in/ikaro-montanari-5aa120208/">Ikaro Montanari</a> </p>
+<p>Instagram  <a target="_blank" href="https://www.instagram.com/ikaro_montanari/">@ikaro_montanari</a> </p>
+<p>Telefone <a target="_blank" href="https://api.whatsapp.com/send?phone=5569993569547&text=Ol%C3%A1%20ikaro">(69) 99356-9547</a> </p>
