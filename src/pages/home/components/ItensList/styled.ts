@@ -68,13 +68,12 @@ export const Filter = styled.div`
     gap: 0.5rem;
 `
 
-export const FilterItem = styled.button`
-    cursor: pointer;
+
+
+const FilterButton = styled.button`
+    cursor: pointer;    
     text-transform: uppercase;
-    border: solid 1px ${props => props.theme["yellow"]};
     border-radius: 100px;
-    color: ${props => props.theme["yellow-dark"]};
-    background-color: ${props => props.theme["white"]};
     padding: 0 0.75rem; 
     font-size: 0.65rem;
     font-weight: 700;
@@ -85,13 +84,41 @@ export const FilterItem = styled.button`
     justify-content: center;
 
     transition: 0.4s;
+
+`
+
+export const FilterItem = styled(FilterButton)`
+   
+    border: solid 1px ${props => props.theme["yellow"]};
+  
+    color: ${props => props.theme["yellow-dark"]};
+    background-color: ${props => props.theme["white"]};
+  
     
     &:hover{
         background-color: ${props => props.theme["yellow-dark"]};
         color: ${props => props.theme["white"]};
+        transition: 0.4s;
+    } 
+
+
+`
+
+
+export const FilterClearItem = styled(FilterButton)`
+   
+    border: solid 1px ${props => props.theme["purple"]};
+    color: ${props => props.theme["white"]};
+    background-color: ${props => props.theme["purple-dark"]};
+
+    
+    &:hover{
+        background-color: ${props => props.theme["white"]};
+        color: ${props => props.theme["purple-dark"]};
         transition: 0.4s;
     }
    
 
 
 `
+

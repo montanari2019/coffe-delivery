@@ -1,7 +1,22 @@
-export function Checkout(){
-    return(
-        <div>
-            <h1>Checkout Pages</h1>
-        </div>
+
+import { EnderecoForms } from "./components/EnderecoForms/EnderecoForms";
+import { PaymentForms } from "./components/Payment/PaymentForms";
+import { Container, TitleBlack } from "./style";
+
+export function Checkout() {
+    return (
+        <Container>
+
+            <section>
+                <TitleBlack>Complete seu pedido</TitleBlack>
+
+                {/* Endereço */}
+                <EnderecoForms/>
+                
+
+                {/* Forma de pagamento */}
+               <PaymentForms/>
+            </section>
+        </Container>
     )
 }

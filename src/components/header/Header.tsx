@@ -8,13 +8,13 @@ export function Header() {
 
     const history = useNavigate()
     
-    function handleHistoryCheckout(){
-        history('/Checkout')
+    function handleHistoryCheckout(url: string){
+        history(`/${url}`)
     }
     return (
         <HeaderLayout>
 
-            <div>
+            <div onClick={()=> handleHistoryCheckout('')}>
                 <img src={logoCoffe} alt="" />
             </div>
 
@@ -27,7 +27,7 @@ export function Header() {
 
                 <CartAjust>
                     <Badge>3</Badge>
-                    <CartLogo onClick={handleHistoryCheckout}>
+                    <CartLogo onClick={() => handleHistoryCheckout("Checkout")}>
                         <ShoppingCart size={28} weight="fill" />
                     </CartLogo>
                 </CartAjust>
