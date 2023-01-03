@@ -2,8 +2,15 @@
 import logoCoffe from "../../../public/coffe-delivery-logo.svg"
 import { MapPin, ShoppingCart } from "phosphor-react"
 import { Badge, CartLogo, Location, HeaderLayout, LocationAndCartContainer, CartAjust } from "./styled"
+import { useNavigate } from "react-router-dom"
 
 export function Header() {
+
+    const history = useNavigate()
+    
+    function handleHistoryCheckout(){
+        history('/Checkout')
+    }
     return (
         <HeaderLayout>
 
@@ -20,7 +27,7 @@ export function Header() {
 
                 <CartAjust>
                     <Badge>3</Badge>
-                    <CartLogo>
+                    <CartLogo onClick={handleHistoryCheckout}>
                         <ShoppingCart size={28} weight="fill" />
                     </CartLogo>
                 </CartAjust>

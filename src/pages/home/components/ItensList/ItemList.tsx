@@ -1,11 +1,11 @@
 import { ItensHome } from "../ItensHome/ItensHome";
 import { CoffesDetails } from "../../../../utils/Coffes"
-import { Container, Filter, FilterItem, SectionTitleAndFilter, TitleMenu } from "./styled";
-import { MarginContainer } from "../../../../layouts/styled";
+import { ContainerListItem,Container, Filter, FilterItem, SectionTitleAndFilter, TitleMenu } from "./styled";
+
 
 export function ItensList() {
     return (
-        <div>
+        <Container>
 
             <SectionTitleAndFilter>
                 <TitleMenu>Nossos cafés</TitleMenu>
@@ -22,16 +22,16 @@ export function ItensList() {
            
      
 
-                <Container>
+                <ContainerListItem>
 
                     {CoffesDetails.map((key) => {
                         return <ItensHome key={key.id} item={CoffesDetails[key.id - 1]} />
                     })}
-                </Container>
+                </ContainerListItem>
            
 
 
 
-        </div>
+        </Container>
     )
 }

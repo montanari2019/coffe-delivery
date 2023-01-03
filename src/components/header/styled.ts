@@ -63,8 +63,9 @@ export const CartAjust = styled.div`
 
 `
 
-export const CartLogo = styled.div`
+export const CartLogo = styled.button`
     cursor: pointer;
+    border: none;
     height: 3rem;
     height: 3rem;
     padding: 0.5rem;

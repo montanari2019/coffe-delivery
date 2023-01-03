@@ -1,9 +1,30 @@
 import { Minus, Plus, ShoppingCartSimple } from "phosphor-react";
+import { useState } from "react";
 import { ItenHomeProps } from "./@types";
 import { ButtonCardDisplay, ButtonQuantidade, ButtonQuantidadeDisplay, CardCategory, CardCategoryDisplay, CardCoffeItem, DescriptionItem, ImagenCoffeItem, Price, ShoppingCartIcons, TitleItem } from "./styledHomeItens";
 
 
 export function ItensHome({ item }: ItenHomeProps) {
+
+    const [quantItem, setQuantItem] = useState<number>(0);
+
+    const [valueConverted, setValueConverted] = useState<string>(item.price.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}))
+
+    function handleClickQuantItem(value: number){
+        if(value === 1){
+            setQuantItem((state) => state + 1)
+
+          
+            
+            
+        }else if(value === -1 && quantItem > 0){
+            setQuantItem((state) => state - 1)
+
+        }
+    }
+
+
+ 
     return (
         <div>
 
@@ -22,12 +43,12 @@ export function ItensHome({ item }: ItenHomeProps) {
 
                 <ButtonCardDisplay>
 
-                    <p>R$<Price>{item.price}0</Price></p>
+                    <p><Price>{valueConverted}</Price></p>
 
                     <ButtonQuantidadeDisplay>
-                        <ButtonQuantidade type="button"><Minus size={15} weight="bold" /> </ButtonQuantidade>
-                        <p>10</p>
-                        <ButtonQuantidade type="button"> <Plus size={15} weight="bold" /> </ButtonQuantidade>
+                        <ButtonQuantidade type="button" onClick={() => handleClickQuantItem(-1)}><Minus size={15} weight="bold" /> </ButtonQuantidade>
+                        <p>{quantItem}</p>
+                        <ButtonQuantidade type="button" onClick={() => handleClickQuantItem(1)}> <Plus size={15} weight="bold" /> </ButtonQuantidade>
                     </ButtonQuantidadeDisplay>
 
                     <ShoppingCartIcons>

@@ -50,7 +50,7 @@ export const CoffesDetails:CoffeIten[] = [
     },
     {
         id: 4,
-        category: ["Tradicional", "gelado", "com leite", "com leite" ,"com leite"],
+        category: ["Tradicional", "gelado", ],
         name: "Expresso Gelado",
         description: 'Bebida preparada com café expresso e cubos de gelo',
         cover: cover04,
