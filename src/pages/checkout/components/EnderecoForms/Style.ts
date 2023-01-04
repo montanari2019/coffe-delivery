@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 
 export const ContainerForm = styled.section`
+    
     margin: 1rem 0;
     background: #F3F2F2;
     border-radius: 6px;
@@ -12,6 +13,14 @@ export const ContainerForm = styled.section`
     }
     
    
+`
+export const TitleBlack = styled.h6`
+    margin: 1rem 0;
+    font-family: 'Baloo 2';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: ${props => props.theme["base-subtitle"]};
 `
 
 export const FormEndereco = styled.form`

@@ -1,21 +1,24 @@
 
 import { EnderecoForms } from "./components/EnderecoForms/EnderecoForms";
 import { PaymentForms } from "./components/Payment/PaymentForms";
-import { Container, TitleBlack } from "./style";
+import { Container } from "./style";
+import { ShoppingCart } from "./components/ShoppingCart/ShoppingCart";
 
 export function Checkout() {
     return (
         <Container>
 
             <section>
-                <TitleBlack>Complete seu pedido</TitleBlack>
-
                 {/* Endereço */}
-                <EnderecoForms/>
-                
+                <EnderecoForms />
+
 
                 {/* Forma de pagamento */}
-               <PaymentForms/>
+                <PaymentForms />
+            </section>
+
+            <section>
+                <ShoppingCart />
             </section>
         </Container>
     )

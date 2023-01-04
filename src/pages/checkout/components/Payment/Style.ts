@@ -63,20 +63,27 @@ export const BaseInput = styled.input`
 
 export const PaymentDisplay = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: space-between;
     align-items: center;
     margin: 2rem 0; 
+    
+    @media (min-width: 1025px) {
+        flex-direction: row;
+        gap: 1rem
+    }
+    
 
 `
 
 export const PaymentButton = styled.button`
-    width: 11.16687rem;
+    width: 100%;
     height: 3.1875rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     padding-left: 1rem;
     font-size: 0.75rem;
     border: none;
@@ -86,6 +93,11 @@ export const PaymentButton = styled.button`
     text-transform: uppercase;
     cursor: pointer;
     transition: 0.1s;
+    
+    @media (min-width: 1025px) {
+        width: 11.16687rem;
+        gap: 1rem;
+    }
     
     &:hover{
         transition: 0.1s;
