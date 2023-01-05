@@ -51,6 +51,7 @@ export const ButtonsQuant = styled.div`
 
 export const NameCoffe = styled.p`
     font-size: 1rem;
+    width: 9.375rem;
     font-weight: 400;
     color: ${props=>props.theme["base-subtitle"]};
     text-transform: capitalize;

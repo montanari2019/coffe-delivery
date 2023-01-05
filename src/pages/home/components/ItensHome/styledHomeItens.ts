@@ -81,7 +81,7 @@ export const Price = styled.strong`
    font-weight: 800;
 `
 
-export const ShoppingCartIcons = styled.div`
+export const ShoppingCartIcons = styled.button`
     cursor: pointer;
     width: 2.37rem;
     height: 2.37rem;
@@ -92,11 +92,17 @@ export const ShoppingCartIcons = styled.div`
     background: ${props => props.theme["purple-dark"]};
     color: ${props => props.theme["white"]};
     transition: 0.4s;
+    border: none;
     
     &:hover{
         background: ${props => props.theme["purple"]};
         transition: 0.4s;
         
+    }
+
+    &:disabled{
+        /* background: ${props => props.theme["purple-light"]}; */
+        cursor: not-allowed;
     }
     
     
