@@ -5,45 +5,71 @@ import { GetSessionStorage, SetSessionStorage } from "./util";
 export const CoffeContext = createContext({} as CoffeContextProps)
 
 
-interface ContextProps{
+interface ContextProps {
     children: ReactNode
 }
 
-export function CoffeContextComponent({ children }: ContextProps){
+export function CoffeContextComponent({ children }: ContextProps) {
 
     const [coffeItenDetails, setCoffeItenDetails] = useState<CoffeItenContext[]>([])
-    const coffesSessionStorage:CoffeItenContext[] = GetSessionStorage()
+    const coffesSessionStorage: CoffeItenContext[] = GetSessionStorage()
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(coffeItenDetails.length === 0 && coffesSessionStorage !== null ){
-          
+        if (coffeItenDetails.length === 0 && coffesSessionStorage !== null) {
+
             console.log(coffesSessionStorage)
-            
+
             setCoffeItenDetails(coffesSessionStorage)
-            // console.log("Teste primeiro if")
-        }else{
-            console.log("Teste if")
-            // console.log(coffeItenDetails)
-            // console.log("segundo if")
-            SetSessionStorage(coffeItenDetails)
+          
+        } else {
             
+            SetSessionStorage(coffeItenDetails)
+
         }
-        
-    },[coffeItenDetails])
+
+    }, [coffeItenDetails])
 
 
 
-    async function createShoppingCart(iten: CoffeItenContext){
+    async function createShoppingCart(iten: CoffeItenContext) {
         console.log(iten)
 
-        await setCoffeItenDetails((state) => [...state, iten])
-        
+        let verifyDuplicity:boolean = false
+
+        for (let index = 0; index < coffeItenDetails.length; index++) {
+            if (coffeItenDetails[index].id === iten.id) {
+                verifyDuplicity = true
+                break
+
+            } else {
+
+                verifyDuplicity = false
+            }
+        }
+
+        if(verifyDuplicity === true){
+            const newCoffes = coffeItenDetails.map((coffe) => {
+                if (coffe.id === iten.id) {
+
+                    return { ...coffe, quant: coffe.quant + iten.quant }
+                } else {
+                    console.log("Nnehum item duplicado")
+                    return coffe
+                }
+            })
+
+            await setCoffeItenDetails(newCoffes)
+
+        }else{
+
+            await setCoffeItenDetails((state) => [...state, iten])
+        }
     }
 
-    return(
-        <CoffeContext.Provider value={{ coffeItenDetails, createShoppingCart }}>
-            {children}
-        </CoffeContext.Provider>
-    )
-}
+        return (
+            <CoffeContext.Provider value={{ coffeItenDetails, createShoppingCart }}>
+                {children}
+            </CoffeContext.Provider>
+        )
+    }

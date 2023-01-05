@@ -11,12 +11,17 @@ export const TitleBlack = styled.h6`
 `
 
 export const CardCoffeSelct = styled.div`
-    /* width: 100%; */
+    min-width: 28rem;
     /* height: 498px; */
     background: #F3F2F2;
     padding-bottom: 2rem;
     border-radius: 6px 44px;
    
+
+`
+export const TitleNotItem = styled.h3`
+    text-align: center;
+    padding: 2rem;
 
 `
 
