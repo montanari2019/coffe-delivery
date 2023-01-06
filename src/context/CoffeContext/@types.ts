@@ -8,7 +8,10 @@ export interface CoffeItenContext{
     quant: number
 }
 
+
 export interface CoffeContextProps{
     coffeItenDetails: CoffeItenContext[];
     createShoppingCart: (iten: CoffeItenContext) => Promise<void>;
+    DeleteItenShoppingCart: (id: number) => void;
+    UpdateQuantityIten: (id: number, type:"Decrease" | "Increase") => void;
 }

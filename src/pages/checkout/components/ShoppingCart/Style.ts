@@ -12,7 +12,7 @@ export const TitleBlack = styled.h6`
 
 export const CardCoffeSelct = styled.div`
     min-width: 28rem;
-    /* height: 498px; */
+   
     background: #F3F2F2;
     padding-bottom: 2rem;
     border-radius: 6px 44px;
@@ -81,7 +81,12 @@ export const BaseButton = styled.button`
     cursor:pointer;
 
     &:focus{
-        outline: solid 1px  ${props=> props.theme.purple};
+        /* outline: solid 1px  ${props=> props.theme.purple}; */
+    }
+
+    &:disabled{
+        opacity: 0;
+        cursor: not-allowed;
     }
     
 `
@@ -151,5 +156,13 @@ export const ButoonConfirm = styled.button`
 
     &:focus{
         outline: solid 1px  ${props=> props.theme["yellow-dark"]};
+    }
+
+    &:disabled{
+        background: ${props=>props.theme["base-hover"]};
+        outline: none;
+        color: ${props=>props.theme["base-label"]};
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 `

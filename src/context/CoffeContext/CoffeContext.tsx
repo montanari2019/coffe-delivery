@@ -21,21 +21,74 @@ export function CoffeContextComponent({ children }: ContextProps) {
             console.log(coffesSessionStorage)
 
             setCoffeItenDetails(coffesSessionStorage)
-          
+
         } else {
-            
+
             SetSessionStorage(coffeItenDetails)
 
         }
 
     }, [coffeItenDetails])
 
+    function UpdateQuantityIten(id: number, type: "Decrease" | "Increase") {
+
+        if (type === "Decrease") {
+            const newListCoffeDecrese = coffeItenDetails.map((state) => {
+                if (state.id === id) {
+                    if (state.quant > 0) {
+                        return { ...state, quant: state.quant - 1 }
+                    } else {
+
+                        return state
+                    }
+
+
+                } else {
+                    return state
+                }
+            })
+
+            const verifyListCoffeQuantZero = newListCoffeDecrese.filter((element) => element.quant !== 0)
+
+            setCoffeItenDetails(verifyListCoffeQuantZero)
+            // SetSessionStorage(verifyListCoffeQuantZero)
+        } else {
+
+            const newListCoffeIncrease = coffeItenDetails.map((state) => {
+                if (state.id === id) {
+                    return { ...state, quant: state.quant + 1 }
+                }else {
+                    return state
+                }
+            })
+
+            setCoffeItenDetails(newListCoffeIncrease)
+            // SetSessionStorage(newListCoffeIncrease)
+
+        }
+
+
+
+    }
+
+    function DeleteItenShoppingCart(id: number) {
+        const coffes: CoffeItenContext[] = GetSessionStorage()
+
+        if (coffes !== null) {
+            const newCoffes = coffes.filter((element) => element.id !== id)
+
+            SetSessionStorage(newCoffes)
+            setCoffeItenDetails(newCoffes)
+        }
+
+    }
+
 
 
     async function createShoppingCart(iten: CoffeItenContext) {
         console.log(iten)
 
-        let verifyDuplicity:boolean = false
+        let verifyDuplicity: boolean = false
 
         for (let index = 0; index < coffeItenDetails.length; index++) {
             if (coffeItenDetails[index].id === iten.id) {
@@ -48,7 +101,7 @@ export function CoffeContextComponent({ children }: ContextProps) {
             }
         }
 
-        if(verifyDuplicity === true){
+        if (verifyDuplicity === true) {
             const newCoffes = coffeItenDetails.map((coffe) => {
                 if (coffe.id === iten.id) {
 
@@ -61,15 +114,15 @@ export function CoffeContextComponent({ children }: ContextProps) {
 
             await setCoffeItenDetails(newCoffes)
 
-        }else{
+        } else {
 
             await setCoffeItenDetails((state) => [...state, iten])
         }
     }
 
-        return (
-            <CoffeContext.Provider value={{ coffeItenDetails, createShoppingCart }}>
-                {children}
-            </CoffeContext.Provider>
-        )
-    }
+    return (
+        <CoffeContext.Provider value={{ coffeItenDetails, createShoppingCart, DeleteItenShoppingCart, UpdateQuantityIten }}>
+            {children}
+        </CoffeContext.Provider>
+    )
+}

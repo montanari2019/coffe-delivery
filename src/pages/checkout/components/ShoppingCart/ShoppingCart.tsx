@@ -2,21 +2,28 @@ import { Minus, Plus, Trash } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCoffe } from "../../../../context/CoffeContext/useCoffe";
-import { CoffesDetails } from "../../../../utils/Coffes";
 import { CardCoffeSelct, TitleBlack, CardCoffeItem, ImageCoffe, DisplayButtonAndName, NameCoffe, ButtonsQuant, DisplayButton, BaseButton, ButtonRemove, CardTotalizer, TotalizerItem, Totalizer, ButoonConfirm, TitleNotItem } from "./Style";
 
 export function ShoppingCart() {
     const history = useNavigate()
 
-    const { coffeItenDetails } = useCoffe()
-
-    const [coffeItenDetailsAux, setcoffeItenDetailsAux] = useState(coffeItenDetails)
+    const { coffeItenDetails, DeleteItenShoppingCart, UpdateQuantityIten } = useCoffe()
 
     const [totalizerItens, setTotalizerItens] = useState<number>(0)
+
+    const disableButton = coffeItenDetails.length === 0
 
 
     function redirectRoute(url: string) {
         history(`/${url}`)
+    }
+
+    function handleDeleteItem(id: number){
+        DeleteItenShoppingCart(id)
+    }
+
+    function handleUpdateQuantityIten(id: number, type: "Decrease" | "Increase"){
+        UpdateQuantityIten(id, type)
     }
 
     useEffect(() => {
@@ -29,6 +36,8 @@ export function ShoppingCart() {
         setTotalizerItens(totalizerItens)
 
     }, [coffeItenDetails])
+
+    
 
 
     return (
@@ -48,11 +57,11 @@ export function ShoppingCart() {
                                 <ButtonsQuant>
 
                                     <DisplayButton>
-                                        <BaseButton><Minus size={15} weight="bold" /></BaseButton>
+                                        <BaseButton disabled={coffe.quant === 1 ? true : false} onClick={()=> handleUpdateQuantityIten(coffe.id, "Decrease")}><Minus size={15} weight="bold" /></BaseButton>
                                         <p>{coffe.quant}</p>
-                                        <BaseButton><Plus size={15} weight="bold" /></BaseButton>
+                                        <BaseButton  onClick={()=> handleUpdateQuantityIten(coffe.id, "Increase")} ><Plus size={15} weight="bold" /></BaseButton>
                                     </DisplayButton>
-                                    <ButtonRemove><Trash color="#8047F8" size={15} />remover</ButtonRemove>
+                                    <ButtonRemove onClick={()=> handleDeleteItem(coffe.id)}><Trash color="#8047F8" size={15} />remover</ButtonRemove>
                                 </ButtonsQuant>
 
 
@@ -88,7 +97,7 @@ export function ShoppingCart() {
                         <strong>{totalizerItens.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</strong>
                     </Totalizer>
 
-                    <ButoonConfirm onClick={() => redirectRoute('Sucess')}>Confirmar Pedido</ButoonConfirm>
+                    <ButoonConfirm disabled={disableButton} onClick={() => redirectRoute('Sucess')}>Confirmar Pedido</ButoonConfirm>
                 </CardTotalizer>
 
 

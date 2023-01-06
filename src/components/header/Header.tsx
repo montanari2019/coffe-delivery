@@ -44,9 +44,11 @@ export function Header() {
                 </Location>
 
                 <CartAjust>
+
                     {
                         quantCoff === 0 ? <></> : <Badge>{quantCoff}</Badge>
                     }
+                    
                     <CartLogo onClick={() => handleHistoryCheckout("Checkout")}>
                         <ShoppingCart size={28} weight="fill" />
                     </CartLogo>
