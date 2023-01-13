@@ -5,18 +5,51 @@ import { useCoffe } from "../../../../context/CoffeContext/useCoffe";
 import { CardCoffeSelct, TitleBlack, CardCoffeItem, ImageCoffe, DisplayButtonAndName, NameCoffe, ButtonsQuant, DisplayButton, BaseButton, ButtonRemove, CardTotalizer, TotalizerItem, Totalizer, ButoonConfirm, TitleNotItem } from "./Style";
 
 export function ShoppingCart() {
+
     const history = useNavigate()
 
-    const { coffeItenDetails, DeleteItenShoppingCart, UpdateQuantityIten } = useCoffe()
+    const { coffeItenDetails, paymentMethod, enderecoForms , DeleteItenShoppingCart, DeleteAllShoppingCart , UpdateQuantityIten  } = useCoffe()
 
     const [totalizerItens, setTotalizerItens] = useState<number>(0)
 
-    const disableButton = coffeItenDetails.length === 0
+    const [disableButton, setdisableButton] = useState(false)
+
+    useEffect(()=>{
+    
+        if(coffeItenDetails.length > 0 && paymentMethod !== '' && enderecoForms !== undefined){
+            
+            setdisableButton(false)
+
+        }else{
+            setdisableButton(true)
+        }
+
+    },[coffeItenDetails, paymentMethod, enderecoForms])
 
 
-    function redirectRoute(url: string) {
+    useEffect(() => {
+
+        if(coffeItenDetails.length > 0){
+            const totalizerItensArray = coffeItenDetails.map((state) => {
+                return (state.quant * state.price)
+            })
+            const totalizerItens = totalizerItensArray.reduce((total, value) => { return total + value }, 0)
+    
+            setTotalizerItens(totalizerItens)
+    
+        }else{
+            history("/")
+        }
+
+
+       
+    }, [coffeItenDetails])
+
+    function handleConfirmPedido(url: string){
+        DeleteAllShoppingCart()
         history(`/${url}`)
     }
+
 
     function handleDeleteItem(id: number){
         DeleteItenShoppingCart(id)
@@ -26,16 +59,7 @@ export function ShoppingCart() {
         UpdateQuantityIten(id, type)
     }
 
-    useEffect(() => {
-
-        const totalizerItensArray = coffeItenDetails.map((state) => {
-            return (state.quant * state.price)
-        })
-        const totalizerItens = totalizerItensArray.reduce((total, value) => { return total + value }, 0)
-
-        setTotalizerItens(totalizerItens)
-
-    }, [coffeItenDetails])
+   
 
     
 
@@ -58,10 +82,11 @@ export function ShoppingCart() {
 
                                     <DisplayButton>
                                         <BaseButton disabled={coffe.quant === 1 ? true : false} onClick={()=> handleUpdateQuantityIten(coffe.id, "Decrease")}><Minus size={15} weight="bold" /></BaseButton>
-                                        <p>{coffe.quant}</p>
+                                            <p>{coffe.quant}</p>
                                         <BaseButton  onClick={()=> handleUpdateQuantityIten(coffe.id, "Increase")} ><Plus size={15} weight="bold" /></BaseButton>
                                     </DisplayButton>
                                     <ButtonRemove onClick={()=> handleDeleteItem(coffe.id)}><Trash color="#8047F8" size={15} />remover</ButtonRemove>
+                                    
                                 </ButtonsQuant>
 
 
@@ -73,13 +98,6 @@ export function ShoppingCart() {
                         </CardCoffeItem>
                     )
                 })}
-
-                {/* <pre>
-                    <code>{JSON.stringify(coffeItenDetails, null, 2)}</code>
-                </pre> */}
-
-
-
 
                 <CardTotalizer>
                     <TotalizerItem>
@@ -97,11 +115,15 @@ export function ShoppingCart() {
                         <strong>{totalizerItens.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</strong>
                     </Totalizer>
 
-                    <ButoonConfirm disabled={disableButton} onClick={() => redirectRoute('Sucess')}>Confirmar Pedido</ButoonConfirm>
+                    <ButoonConfirm disabled={disableButton} onClick={() => handleConfirmPedido('Sucess')}>Confirmar Pedido</ButoonConfirm>
                 </CardTotalizer>
 
 
             </CardCoffeSelct>
+
+               {/* <pre>
+                    <code>{JSON.stringify(coffeItenDetails, null, 2)}</code>
+                </pre> */}
 
         </div>
     )

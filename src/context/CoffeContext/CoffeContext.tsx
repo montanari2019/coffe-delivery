@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { CoffeContextProps, CoffeItenContext } from "./@types";
-import { GetSessionStorage, SetSessionStorage } from "./util";
+import { CoffeContextProps, CoffeItenContext, EnderecoContext } from "./@types";
+import { GetItemSessionStorage, GetSessionStorage, SetSessionStorageCoffe, SetSessionStorageEndereco, SetSessionStoragePaymentMethod } from "./util";
 
 export const CoffeContext = createContext({} as CoffeContextProps)
 
@@ -9,26 +9,64 @@ interface ContextProps {
     children: ReactNode
 }
 
+const enderecoDefaut = {
+    cep: 999,
+    rua: "string",
+    numero:"string",
+    complemento:"string",
+    bairro:"string",
+    cidade:"string",
+    uf:"string"
+}
+
 export function CoffeContextComponent({ children }: ContextProps) {
 
     const [coffeItenDetails, setCoffeItenDetails] = useState<CoffeItenContext[]>([])
-    const coffesSessionStorage: CoffeItenContext[] = GetSessionStorage()
+    const [enderecoForms, setEnderecoForms] = useState<EnderecoContext>()
+    const [paymentMethod, setPaymentMethod] = useState<string>("")
+    const coffesSessionStorage: CoffeItenContext[] = GetItemSessionStorage("Coffe")
+    const enFormsSessionStorage: EnderecoContext = GetItemSessionStorage("EnForms")
+    const paymentMethodSessionStorge: string = GetItemSessionStorage("PaymentMethod")
 
     useEffect(() => {
 
         if (coffeItenDetails.length === 0 && coffesSessionStorage !== null) {
 
-            console.log(coffesSessionStorage)
+          
 
             setCoffeItenDetails(coffesSessionStorage)
 
         } else {
 
-            SetSessionStorage(coffeItenDetails)
+            SetSessionStorageCoffe(coffeItenDetails)
 
         }
 
     }, [coffeItenDetails])
+
+    useEffect(()=>{
+
+        if(enderecoForms === undefined && enFormsSessionStorage !== null){
+            setEnderecoForms(enFormsSessionStorage)
+
+        }else{
+            if(enderecoForms !== undefined){
+                SetSessionStorageEndereco(enderecoForms)
+            }
+        }
+
+    },[enderecoForms]),
+
+    useEffect(()=>{
+
+        if(paymentMethod === "" && paymentMethodSessionStorge !== null){
+            setPaymentMethod(paymentMethodSessionStorge)
+
+        }else{
+            SetSessionStoragePaymentMethod(paymentMethod)
+        }
+
+    },[paymentMethod])
 
     function UpdateQuantityIten(id: number, type: "Decrease" | "Increase") {
 
@@ -77,16 +115,19 @@ export function CoffeContextComponent({ children }: ContextProps) {
         if (coffes !== null) {
             const newCoffes = coffes.filter((element) => element.id !== id)
 
-            SetSessionStorage(newCoffes)
+            SetSessionStorageCoffe(newCoffes)
             setCoffeItenDetails(newCoffes)
         }
 
     }
 
+    function DeleteAllShoppingCart(){
+        setCoffeItenDetails([])
+        SetSessionStorageCoffe(null)
+    }
 
-
-    async function createShoppingCart(iten: CoffeItenContext) {
-        console.log(iten)
+    async function CreateShoppingCart(iten: CoffeItenContext) {
+      
 
         let verifyDuplicity: boolean = false
 
@@ -120,8 +161,17 @@ export function CoffeContextComponent({ children }: ContextProps) {
         }
     }
 
+    function CreateEnderecoForms(data: EnderecoContext){
+        setEnderecoForms(data)
+    }
+
+    function CreatePaymentMethod(data: string){
+       
+        setPaymentMethod(data)
+    }
+
     return (
-        <CoffeContext.Provider value={{ coffeItenDetails, createShoppingCart, DeleteItenShoppingCart, UpdateQuantityIten }}>
+        <CoffeContext.Provider value={{ coffeItenDetails, enderecoForms, paymentMethod , CreateShoppingCart, DeleteItenShoppingCart, DeleteAllShoppingCart , UpdateQuantityIten, CreateEnderecoForms, CreatePaymentMethod }}>
             {children}
         </CoffeContext.Provider>
     )

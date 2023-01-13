@@ -1,11 +1,14 @@
+import ilustracao from "../../assets/succes-ilustration.png"
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react"
 import { useNavigate } from "react-router-dom"
-import ilustracao from "../../assets/succes-ilustration.png"
-import { ButtonHome, CardList, CardSucces, CardSuccesAjust, Container, Icon, ImagenIlustracao, TitleBlack } from "./styled"
+import { useCoffe } from "../../context/CoffeContext/useCoffe"
+import { ButtonHome, CardList, CardSucces, CardSuccesAjust, Container, Icon, ImagenIlustracao, TitleBlack, InfoText } from "./styled"
 
 export function Sucess() {
 
     const history = useNavigate()
+
+    const {  enderecoForms, paymentMethod } = useCoffe()
 
     function redirectRoute(url:string){
         history(`/${url}`)
@@ -24,26 +27,26 @@ export function Sucess() {
                     <CardSuccesAjust>
                         <CardList>
                             <Icon colorIcon="purple"><MapPin size={15} weight="fill" /></Icon>
-                            <div>
-                                <p>Entrega em <strong> Rua João Daniel Martinelli, 102</strong></p>
-                                <p>Farrapos - Porto Alegre, RS</p>
-                            </div>
+                            <InfoText>
+                                <p>Entrega em <strong> {enderecoForms?.rua}, {enderecoForms?.numero}</strong></p>
+                                <p>{enderecoForms?.bairro} - {enderecoForms?.cidade}, {enderecoForms?.uf}</p>
+                            </InfoText>
                         </CardList>
 
                         <CardList>
                             <Icon colorIcon="yellow"><Timer size={15} weight="fill" /></Icon>
-                            <div>
+                            <InfoText>
                                 <p>Previsão de entrega</p>
                                 <strong>20 min - 30 min</strong>
-                            </div>
+                            </InfoText>
                         </CardList>
 
                         <CardList>
                             <Icon colorIcon="yellowDark"><CurrencyDollar  size={15} weight="fill" /></Icon>
-                            <div>
-                                <p>Entrega em <strong> Rua João Daniel Martinelli, 102</strong></p>
-                                <strong>Cartão de Crédito</strong>
-                            </div>
+                            <InfoText>
+                                <p>Pagamento na entrega</p>
+                                <strong style={{textTransform: "capitalize"}}>{paymentMethod}</strong>
+                            </InfoText>
                         </CardList>
 
                     </CardSuccesAjust>

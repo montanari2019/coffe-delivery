@@ -1,7 +1,16 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
+import { useCoffe } from "../../../../context/CoffeContext/useCoffe";
 import { ContainerForm, IconColor, IconTitle, PaymentButton, PaymentDisplay, Subtitle, Title } from "./Style";
 
 export function PaymentForms() {
+
+    const { CreatePaymentMethod } = useCoffe()
+
+
+    function handlePaymentMethod(value:string){
+        CreatePaymentMethod(value)
+    }
+
     return (
         <ContainerForm>
             <IconTitle>
@@ -18,9 +27,9 @@ export function PaymentForms() {
             </IconTitle>
 
             <PaymentDisplay>
-                <PaymentButton><CreditCard color="#8047F8" size={20} />Cartão de crédito</PaymentButton>
-                <PaymentButton><Bank color="#8047F8" size={20} />cartão de débito</PaymentButton>
-                <PaymentButton><Money color="#8047F8" size={20} />dinheiro</PaymentButton>
+                <PaymentButton colorButton={"baseButton"} onClick={()=> handlePaymentMethod("Cartão de crédito")}><CreditCard color="#8047F8" size={20} />Cartão de crédito</PaymentButton>
+                <PaymentButton colorButton={"baseButton"} onClick={()=> handlePaymentMethod("cartão de débito")}><Bank color="#8047F8" size={20} />cartão de débito</PaymentButton>
+                <PaymentButton colorButton={"baseButton"} onClick={()=> handlePaymentMethod("dinheiro")}><Money color="#8047F8" size={20} />dinheiro</PaymentButton>
             </PaymentDisplay>
 
         </ContainerForm>

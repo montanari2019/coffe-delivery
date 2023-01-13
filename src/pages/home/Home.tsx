@@ -1,4 +1,4 @@
-import { MarginContainer } from "../../layouts/styled";
+
 import { HeaderHome } from "./components/headerHome/HeaderHome";
 import { ItensList } from "./components/ItensList/ItemList";
 

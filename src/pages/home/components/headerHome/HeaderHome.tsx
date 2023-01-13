@@ -1,10 +1,19 @@
+import imagemCoffe from "../../../../assets/Imagem-coffe.png"
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { HeaderBackground, HeaderContainer, CardIcon, CardConatiner, Title, TitleAndContainer,CardDisplay, Imagen } from "./styledHeaderHome";
-import imagemCoffe from "../../../../assets/Imagem-coffe.png"
+import { useCoffe } from "../../../../context/CoffeContext/useCoffe";
 
 export function HeaderHome() {
+    const { coffeItenDetails } = useCoffe()
+
+    
+
+
+
+    
     return (
         <div>
+           
             <HeaderBackground>
             </HeaderBackground>
 

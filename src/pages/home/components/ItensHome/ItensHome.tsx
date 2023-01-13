@@ -8,7 +8,7 @@ import { ButtonCardDisplay, ButtonQuantidade, ButtonQuantidadeDisplay, CardCateg
 
 export function ItensHome({ item }: ItenHomeProps) {
 
-    const { createShoppingCart } = useCoffe()
+    const { CreateShoppingCart } = useCoffe()
 
     const [quantItem, setQuantItem] = useState<number>(0);
     const [priceState, setPrice] = useState<number>(item.price)
@@ -43,7 +43,7 @@ export function ItensHome({ item }: ItenHomeProps) {
 
         }else{
             const iten = { ...item, quant: quantItem}
-            createShoppingCart(iten)
+            CreateShoppingCart(iten)
             setQuantItem(0)
 
 

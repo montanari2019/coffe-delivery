@@ -76,8 +76,19 @@ export const PaymentDisplay = styled.div`
     
 
 `
+const COLLOR_BUTTON = {
+    baseButton: "base-button",
+    yellonLight: "purple-light"
+    
 
-export const PaymentButton = styled.button`
+   
+} as const
+
+interface COLLOR_BUTTON_PROPS {
+    colorButton: keyof typeof COLLOR_BUTTON
+}
+
+export const PaymentButton = styled.button<COLLOR_BUTTON_PROPS>`
     width: 100%;
     height: 3.1875rem;
     display: flex;
@@ -87,7 +98,7 @@ export const PaymentButton = styled.button`
     padding-left: 1rem;
     font-size: 0.75rem;
     border: none;
-    background:  ${props => props.theme["base-button"]};
+    background:  ${props => props.theme[COLLOR_BUTTON[props.colorButton]]};
     color:  ${props => props.theme["base-text"]};
     border-radius: 6px;
     text-transform: uppercase;

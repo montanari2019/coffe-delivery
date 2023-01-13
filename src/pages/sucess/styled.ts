@@ -79,6 +79,10 @@ export const ButtonHome = styled.button`
 
 `
 
+export const InfoText = styled.div`
+    text-transform: capitalize;
+`
+
 
 const COLOR_ICON = {
     yellowDark: "yellow-dark",

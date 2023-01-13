@@ -69,6 +69,8 @@ export const BaseInput = styled.input`
     border-radius: 4px;
     height: 2.5rem;
     padding-left: 0.5rem;
+  
+
     
 
     &:focus{

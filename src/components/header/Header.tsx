@@ -1,10 +1,11 @@
 
-import logoCoffe from "../../../public/coffe-delivery-logo.svg"
+import logoCoffe from "../../assets/coffe-delivery-logo.svg"
 import { MapPin, ShoppingCart } from "phosphor-react"
 import { Badge, CartLogo, Location, HeaderLayout, LocationAndCartContainer, CartAjust } from "./styled"
 import { useNavigate } from "react-router-dom"
 import { useCoffe } from "../../context/CoffeContext/useCoffe"
 import { useEffect, useState } from "react"
+import { SnackBarMUI } from "../SnackBar/SnakBarMUI"
 
 export function Header() {
 
@@ -13,6 +14,10 @@ export function Header() {
     const { coffeItenDetails } = useCoffe()
 
     const [quantCoff, setQuantCoffe] = useState<number>(0)
+
+    const [snackBarStatus, setSnackBarStatus] = useState(false)
+    const [colorSnackBar, setColorSnackBar] = useState('')
+    const [menssageSnakeBar, setMessageSnakeBar] = useState('')
 
     useEffect(()=>{
 
@@ -25,14 +30,31 @@ export function Header() {
 
     },[coffeItenDetails])
 
+    function handleRedirectHome(){
+        history("")
+    }
+
     
     function handleHistoryCheckout(url: string){
-        history(`/${url}`)
+
+        if(coffeItenDetails.length === 0){
+            setSnackBarStatus(true)
+            setMessageSnakeBar("É necessário adicionar algum item ao carrinho para prosseguir")
+            setColorSnackBar("#F75A68")
+
+            setTimeout(()=>{
+                setSnackBarStatus(false)
+            }, 3000)
+        }else{
+            
+            history(`/${url}`)
+        }
     }
     return (
         <HeaderLayout>
+             <SnackBarMUI color={colorSnackBar} message={menssageSnakeBar} open={snackBarStatus} onClose={() => setSnackBarStatus(false) }/>
 
-            <div onClick={()=> handleHistoryCheckout('')}>
+            <div onClick={handleRedirectHome}>
                 <img src={logoCoffe} alt="" />
             </div>
 
