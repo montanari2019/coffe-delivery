@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
 import { CoffeContextProps, CoffeItenContext, EnderecoContext } from "./@types";
 import { GetItemSessionStorage, GetSessionStorage, SetSessionStorageCoffe, SetSessionStorageEndereco, SetSessionStoragePaymentMethod } from "./util";
 
@@ -9,169 +9,193 @@ interface ContextProps {
     children: ReactNode
 }
 
-const enderecoDefaut = {
-    cep: 999,
-    rua: "string",
-    numero:"string",
-    complemento:"string",
-    bairro:"string",
-    cidade:"string",
-    uf:"string"
-}
+
 
 export function CoffeContextComponent({ children }: ContextProps) {
 
-    const [coffeItenDetails, setCoffeItenDetails] = useState<CoffeItenContext[]>([])
+    const [coffeItenDetails, dispatch] = useReducer((state: CoffeItenContext[], action: any) => {
+
+
+
+        if (action.type === "CREATE_SHOPPING_CART_COFFE") {
+
+            let verifyDuplicity: boolean = false
+
+            for (let index = 0; index < state.length; index++) {
+                if (state[index].id === action.payload.iten.id) {
+                    verifyDuplicity = true
+                    break
+
+                } else {
+
+                    verifyDuplicity = false
+                }
+            }
+
+            if (verifyDuplicity === true) {
+
+                const newCoffes = state.map((coffe) => {
+                    console.log("item: ", action.payload.iten.quant)
+                    if (coffe.id === action.payload.iten.id) {
+                        return { ...coffe, quant: coffe.quant + action.payload.iten.quant }
+                    } else {
+
+                        return coffe
+                    }
+                })
+
+                console.log("New coffes: ", [...newCoffes])
+
+                return [...newCoffes]
+
+            } else {
+
+                return [...state, action.payload.iten]
+
+            }
+
+
+
+        }
+        else if (action.type === "UPDATE_SHOPING_CART_COFFE") {
+            if (action.payload.typeIten === "Decrease") {
+                const newListCoffeDecrese:CoffeItenContext[] = state.map((index) => {
+                    if (index.id === action.payload.idIten) {
+                        if (index.quant > 0) {
+                            return { ...index, quant: index.quant - 1 }
+                        } else {
+
+                            return index
+                        }
+
+
+                    } else {
+                        return index
+                    }
+                })
+
+                const verifyListCoffeQuantZero:CoffeItenContext[] = newListCoffeDecrese.filter((element) => element.quant !== 0)
+
+                return [...verifyListCoffeQuantZero]
+            } else {
+
+                const newListCoffeIncrease:CoffeItenContext[] = state.map((index) => {
+                    if (index.id === action.payload.idIten) {
+                        return { ...index, quant: index.quant + 1 }
+                    } else {
+                        return index
+                    }
+                })
+
+                return [...newListCoffeIncrease]
+
+            }
+        }
+        else if(action.type === "REMOVE_SHOPING_CART_COFFE"){
+            const coffesFilter:CoffeItenContext[] = state.filter((element)=> element.id !== action.payload.idIten)
+            return [...coffesFilter]
+        }
+        else if(action.type === "DELETE_ALL_SHOPING_CART_COFFE"){
+            return []
+        }
+
+        return state
+
+    }, [])
+
+
+
+
+
+
     const [enderecoForms, setEnderecoForms] = useState<EnderecoContext>()
     const [paymentMethod, setPaymentMethod] = useState<string>("")
-    const coffesSessionStorage: CoffeItenContext[] = GetItemSessionStorage("Coffe")
     const enFormsSessionStorage: EnderecoContext = GetItemSessionStorage("EnForms")
     const paymentMethodSessionStorge: string = GetItemSessionStorage("PaymentMethod")
 
+
     useEffect(() => {
 
-        if (coffeItenDetails.length === 0 && coffesSessionStorage !== null) {
-
-          
-
-            setCoffeItenDetails(coffesSessionStorage)
-
-        } else {
-
-            SetSessionStorageCoffe(coffeItenDetails)
-
-        }
-
-    }, [coffeItenDetails])
-
-    useEffect(()=>{
-
-        if(enderecoForms === undefined && enFormsSessionStorage !== null){
+        if (enderecoForms === undefined && enFormsSessionStorage !== null) {
             setEnderecoForms(enFormsSessionStorage)
 
-        }else{
-            if(enderecoForms !== undefined){
+        } else {
+            if (enderecoForms !== undefined) {
                 SetSessionStorageEndereco(enderecoForms)
             }
         }
 
-    },[enderecoForms]),
+    }, [enderecoForms]),
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(paymentMethod === "" && paymentMethodSessionStorge !== null){
-            setPaymentMethod(paymentMethodSessionStorge)
+            if (paymentMethod === "" && paymentMethodSessionStorge !== null) {
+                setPaymentMethod(paymentMethodSessionStorge)
 
-        }else{
-            SetSessionStoragePaymentMethod(paymentMethod)
-        }
+            } else {
+                SetSessionStoragePaymentMethod(paymentMethod)
+            }
 
-    },[paymentMethod])
+    }, [paymentMethod])
+
+    async function CreateShoppingCart(iten: CoffeItenContext) {
+
+        dispatch({
+            type: "CREATE_SHOPPING_CART_COFFE",
+            payload: {
+                iten: iten
+            }
+        })
+
+
+
+    }
 
     function UpdateQuantityIten(id: number, type: "Decrease" | "Increase") {
 
-        if (type === "Decrease") {
-            const newListCoffeDecrese = coffeItenDetails.map((state) => {
-                if (state.id === id) {
-                    if (state.quant > 0) {
-                        return { ...state, quant: state.quant - 1 }
-                    } else {
+        dispatch({
+            type: "UPDATE_SHOPING_CART_COFFE",
+            payload: {
+                idIten: id,
+                typeIten: type
 
-                        return state
-                    }
-
-
-                } else {
-                    return state
-                }
-            })
-
-            const verifyListCoffeQuantZero = newListCoffeDecrese.filter((element) => element.quant !== 0)
-
-            setCoffeItenDetails(verifyListCoffeQuantZero)
-            // SetSessionStorage(verifyListCoffeQuantZero)
-        } else {
-
-            const newListCoffeIncrease = coffeItenDetails.map((state) => {
-                if (state.id === id) {
-                    return { ...state, quant: state.quant + 1 }
-                }else {
-                    return state
-                }
-            })
-
-            setCoffeItenDetails(newListCoffeIncrease)
-            // SetSessionStorage(newListCoffeIncrease)
-
-        }
-
-
+            }
+        })
 
     }
 
     function DeleteItenShoppingCart(id: number) {
-        const coffes: CoffeItenContext[] = GetSessionStorage()
 
-        if (coffes !== null) {
-            const newCoffes = coffes.filter((element) => element.id !== id)
+        dispatch({
+            type: "REMOVE_SHOPING_CART_COFFE",
+            payload: {
+                idIten: id,
 
-            SetSessionStorageCoffe(newCoffes)
-            setCoffeItenDetails(newCoffes)
-        }
-
-    }
-
-    function DeleteAllShoppingCart(){
-        setCoffeItenDetails([])
-        SetSessionStorageCoffe(null)
-    }
-
-    async function CreateShoppingCart(iten: CoffeItenContext) {
-      
-
-        let verifyDuplicity: boolean = false
-
-        for (let index = 0; index < coffeItenDetails.length; index++) {
-            if (coffeItenDetails[index].id === iten.id) {
-                verifyDuplicity = true
-                break
-
-            } else {
-
-                verifyDuplicity = false
             }
-        }
+        })
 
-        if (verifyDuplicity === true) {
-            const newCoffes = coffeItenDetails.map((coffe) => {
-                if (coffe.id === iten.id) {
-
-                    return { ...coffe, quant: coffe.quant + iten.quant }
-                } else {
-                    console.log("Nnehum item duplicado")
-                    return coffe
-                }
-            })
-
-            await setCoffeItenDetails(newCoffes)
-
-        } else {
-
-            await setCoffeItenDetails((state) => [...state, iten])
-        }
     }
 
-    function CreateEnderecoForms(data: EnderecoContext){
+    function DeleteAllShoppingCart() {
+        dispatch({
+            type: "DELETE_ALL_SHOPING_CART_COFFE",
+        })
+       
+    }
+
+ 
+
+    function CreateEnderecoForms(data: EnderecoContext) {
         setEnderecoForms(data)
     }
 
-    function CreatePaymentMethod(data: string){
-       
+    function CreatePaymentMethod(data: string) {
+
         setPaymentMethod(data)
     }
 
     return (
-        <CoffeContext.Provider value={{ coffeItenDetails, enderecoForms, paymentMethod , CreateShoppingCart, DeleteItenShoppingCart, DeleteAllShoppingCart , UpdateQuantityIten, CreateEnderecoForms, CreatePaymentMethod }}>
+        <CoffeContext.Provider value={{ coffeItenDetails, enderecoForms, paymentMethod, CreateShoppingCart, DeleteItenShoppingCart, DeleteAllShoppingCart, UpdateQuantityIten, CreateEnderecoForms, CreatePaymentMethod }}>
             {children}
         </CoffeContext.Provider>
     )

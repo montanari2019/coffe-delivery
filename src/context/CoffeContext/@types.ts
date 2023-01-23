@@ -25,9 +25,10 @@ export interface CoffeContextProps{
     enderecoForms: EnderecoContext | undefined,
     paymentMethod: string | undefined,
     CreateShoppingCart: (iten: CoffeItenContext) => Promise<void>;
+    UpdateQuantityIten: (id: number, type:"Decrease" | "Increase") => void;
     DeleteItenShoppingCart: (id: number) => void;
     DeleteAllShoppingCart:() => void
-    UpdateQuantityIten: (id: number, type:"Decrease" | "Increase") => void;
+    
     CreateEnderecoForms:(data: EnderecoContext) => void
     CreatePaymentMethod: (data: string) =>void
 }

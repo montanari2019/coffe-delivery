@@ -8,7 +8,7 @@ export function ShoppingCart() {
 
     const history = useNavigate()
 
-    const { coffeItenDetails, paymentMethod, enderecoForms , DeleteItenShoppingCart, DeleteAllShoppingCart , UpdateQuantityIten  } = useCoffe()
+    const { coffeItenDetails, paymentMethod, enderecoForms , DeleteItenShoppingCart , UpdateQuantityIten, DeleteAllShoppingCart  } = useCoffe()
 
     const [totalizerItens, setTotalizerItens] = useState<number>(0)
 
@@ -74,7 +74,7 @@ export function ShoppingCart() {
 
                 {coffeItenDetails.map((coffe) => {
                     return (
-                        <CardCoffeItem key={coffe.price + coffe.quant}>
+                        <CardCoffeItem key={coffe.id + coffe.name}>
                             <ImageCoffe src={coffe.cover} />
                             <DisplayButtonAndName>
                                 <NameCoffe>{coffe.name}</NameCoffe>

@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 
     @media (min-width: 999px){
@@ -17,8 +16,7 @@ export const Container = styled.div`
 export const ContainerListItem = styled.div`
     display: flex;
     width: 100%;
-    
-    gap: 2rem;
+    gap: 5rem;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;

@@ -9,11 +9,11 @@ export function GetSessionStorage(){
     return data ? JSON.parse(data) : null
 }
 
-export function SetSessionStorageEndereco(enderecoForms:EnderecoContext){
+export function SetSessionStorageEndereco(enderecoForms:EnderecoContext | null){
     sessionStorage.setItem("EnForms", JSON.stringify(enderecoForms))
 }
 
-export function SetSessionStoragePaymentMethod(payment:string ){
+export function SetSessionStoragePaymentMethod(payment:string | null ){
     sessionStorage.setItem("PaymentMethod", JSON.stringify(payment))
 }
 

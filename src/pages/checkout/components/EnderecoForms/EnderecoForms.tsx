@@ -21,7 +21,7 @@ export function EnderecoForms() {
 
     const { CreateEnderecoForms } = useCoffe()
 
-    const { register, handleSubmit, } = useForm<newEnderecoFormData>({
+    const { register, handleSubmit } = useForm<newEnderecoFormData>({
         resolver: zodResolver(newEnderecoCoffeSchema),
         defaultValues:{
             rua:"",
