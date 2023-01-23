@@ -29,7 +29,7 @@ export function ItensList() {
         <Container>
 
             <SectionTitleAndFilter>
-                <TitleMenu>Nossos cafés</TitleMenu>
+                <TitleMenu>Nossos cafés aqui</TitleMenu>
 
                 <Filter>
 
