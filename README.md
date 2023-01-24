@@ -4,7 +4,6 @@
 </div>
 <h1 align="center" >Coffe Delivery</h1 >
 
-
 <h2 style="" >Tabela de Conteúdo</h2>
 
 <ul>
@@ -20,23 +19,27 @@
 
 </br>
 
-
 # Sobre
-<p dir="auto">Projeto desenvolvido junto ao curso ignite da <a target="_blank" href="https://www.rocketseat.com.br/">Rocketseat💜</a>, que aplicamos conceitos de styled Component avançando no react aplicando na prática modelos como UseEffect, UseReduce,entre outros como roteamento aplicando o Outletdisponível a partir da versão v6 do react router dom.
 
-Ressalto que a aplicação ainda estáem construção </p>
+<p dir="auto">Projeto desenvolvido junto ao curso ignite da <a target="_blank" href="https://www.rocketseat.com.br/">Rocketseat💜</a>, que aplicamos conceitos de styled Component, avançando no react aplicando na prática modelos como UseEffect, UseReduce,entre outros como roteamento ultilizando o Outlet disponível a partir da versão v6 do react router dom.
 
-<p> <a target="_blank" href="https://github.com/montanari2019/coffe-delivery">Click Aqui para acessar oreposítório da aplicação</a> </p>
+A aplicação consiste em um carrinho de comprar de uma cafeteria fictísia, onde o usuário deve escolher ao menos um item, e registrar seu endereço e forma de pagamento, finalizando então sua compra conforme demostração abaixo.
 
+A aplicação também foi desenvolvida com responsividade, com o intuíto de melhorar a experiência do usuário mobile.
+
+</br>
+<p> <a target="_blank" href="https://github.com/montanari2019/coffe-delivery">Click Aqui para acessar o reposítório da aplicação</a> </p>
 
 # Demonstração
 
-<!-- <img style="" src="./public/test-mobile.gif" /> -->
+<p>Desktop</p>
+
+<img style="" src="./src/assets/ReadmeImages/coffe_delivery_desktop.gif" />
 
 </br>
 
-<p>Responsividade</p>
-<!-- <img style="" src="./public/test-responsive.gif" /> -->
+<p>Mobile</p>
+<img style="" src="./src/assets/ReadmeImages/coffe_delivery_mobile.gif" />
 
 </br>
 
@@ -45,17 +48,25 @@ Ressalto que a aplicação ainda estáem construção </p>
 <ul>
    <li>
     <a target="_blank" href="https://create-react-app.dev/">React Create App</a>
-     
+
+   </li>
+      <li>
+      <a target="_blank" href="https://www.npmjs.com/">Npm</a>
+    </li>
+   <li>
+        <a  target="_blank"href="https://styled-components.com/">Styled Components</a>
+
+   </li>
+   <li>
+        <a  target="_blank"href="https://mui.com/">Mateiral UI</a>
+
    </li>
    <li>
         <a  target="_blank"href="https://www.typescriptlang.org/">TypeScript</a>
-        
-   </li>
-   <li>
-    <a target="_blank" href="https://www.npmjs.com/">Npm</a>
-    
-</ul>
 
+   </li>
+
+</ul>
 
 </br>
 
@@ -65,14 +76,14 @@ Ressalto que a aplicação ainda estáem construção </p>
    <li>Possuir Node.js versão LTS instalada</li>
    <li>Possuir NPM instalado (normalmente vem junto ao node.js)</li>
    <li>Seguir os passos abaixo</li>
-   
+
  <br/>
 
       #clone este repositório
       $ git clone <https://github.com/montanari2019/coffe-delivery>
 
       # Acesse a pasta do projeto no terminal/cmd
-      $ cd codeby-test-final
+      $ cd coffe-delivery
 
       # Instale as dependências com o comando
       $ npm install
@@ -92,7 +103,6 @@ Ressalto que a aplicação ainda estáem construção </p>
 
 <p dir="auto">Ikaro Montanari, entusiasta por tecnologia e desenvolvedor front-end</p>
 <p dir="auto">Formado em Análie e Desenvolvimento de Sistemas pelo IFRO em Vilhena-RO</p>
-
 
 # Contato
 

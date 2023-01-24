@@ -31,4 +31,5 @@ export interface CoffeContextProps{
     
     CreateEnderecoForms:(data: EnderecoContext) => void
     CreatePaymentMethod: (data: string) =>void
+    CleanStorage: () =>void
 }

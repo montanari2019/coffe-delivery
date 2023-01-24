@@ -73,6 +73,7 @@ export function CoffeContextComponent({ children }: ContextProps) {
 
 
 
+
     function CreateEnderecoForms(data: EnderecoContext) {
         setEnderecoForms(data)
     }
@@ -82,8 +83,13 @@ export function CoffeContextComponent({ children }: ContextProps) {
         setPaymentMethod(data)
     }
 
+    function CleanStorage(){
+        SetSessionStorageEndereco(null)
+        SetSessionStoragePaymentMethod(null)
+    }
+
     return (
-        <CoffeContext.Provider value={{ coffeItenDetails, enderecoForms, paymentMethod, CreateShoppingCart, DeleteItenShoppingCart, DeleteAllShoppingCart, UpdateQuantityIten, CreateEnderecoForms, CreatePaymentMethod }}>
+        <CoffeContext.Provider value={{ coffeItenDetails, enderecoForms, paymentMethod, CleanStorage ,CreateShoppingCart, DeleteItenShoppingCart, DeleteAllShoppingCart, UpdateQuantityIten, CreateEnderecoForms, CreatePaymentMethod }}>
             {children}
         </CoffeContext.Provider>
     )

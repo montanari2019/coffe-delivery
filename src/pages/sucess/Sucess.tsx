@@ -8,10 +8,11 @@ export function Sucess() {
 
     const history = useNavigate()
 
-    const {  enderecoForms, paymentMethod} = useCoffe()
+    const {  enderecoForms, paymentMethod, CleanStorage} = useCoffe()
 
 
     function redirectRoute(url:string){
+        CleanStorage()
         history(`/${url}`)
     }
     return (
