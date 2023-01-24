@@ -2,7 +2,7 @@ import { createContext, ReactNode, useEffect, useReducer, useState } from "react
 import { ActionTypes, createShoppingCartCoffeAction, deleteAllShoppingCoffe, removeItenShoppingCoffeAction, updateQuantShoppingCoffeAction } from "../../reducers/Coffes/actions";
 import { CoffeReducer } from "../../reducers/Coffes/CoffeReducer";
 import { CoffeContextProps, CoffeItenContext, EnderecoContext } from "./@types";
-import { GetItemSessionStorage, SetSessionStorageEndereco, SetSessionStoragePaymentMethod } from "./util";
+import { GetItemSessionStorage, SetSessionStorageCoffe, SetSessionStorageEndereco, SetSessionStoragePaymentMethod } from "./util";
 
 export const CoffeContext = createContext({} as CoffeContextProps)
 
@@ -19,8 +19,8 @@ export function CoffeContextComponent({ children }: ContextProps) {
 
     const [enderecoForms, setEnderecoForms] = useState<EnderecoContext>()
     const [paymentMethod, setPaymentMethod] = useState<string>("")
-    const enFormsSessionStorage: EnderecoContext = GetItemSessionStorage("EnForms")
-    const paymentMethodSessionStorge: string = GetItemSessionStorage("PaymentMethod")
+    const enFormsSessionStorage: EnderecoContext = GetItemSessionStorage("enForms")
+    const paymentMethodSessionStorge: string = GetItemSessionStorage("paymentMethod")
 
 
     useEffect(() => {
@@ -46,6 +46,7 @@ export function CoffeContextComponent({ children }: ContextProps) {
             }
 
     }, [paymentMethod])
+
 
     async function CreateShoppingCart(iten: CoffeItenContext) {
 

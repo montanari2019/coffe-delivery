@@ -1,22 +1,27 @@
 import { CoffeItenContext, EnderecoContext } from "./@types";
 
-
+export function SetSessionStorageCoffe(coffe: CoffeItenContext[] | null){
+    sessionStorage.setItem("@ignite:coffe", JSON.stringify(coffe))
+}
 
 export function SetSessionStorageEndereco(enderecoForms:EnderecoContext | null){
-    sessionStorage.setItem("EnForms", JSON.stringify(enderecoForms))
+    sessionStorage.setItem("@ignite:enForms", JSON.stringify(enderecoForms))
 }
 
 export function SetSessionStoragePaymentMethod(payment:string | null ){
-    sessionStorage.setItem("PaymentMethod", JSON.stringify(payment))
+    sessionStorage.setItem("@ignite:paymentMethod", JSON.stringify(payment))
 }
 
-export function GetItemSessionStorage(type: "Coffe" | "EnForms" | "PaymentMethod"){
+export function GetItemSessionStorage(type: "coffe" | "enForms" | "paymentMethod"){
     
-    if(type === "EnForms"){
-        const EnForms = sessionStorage.getItem('EnForms')
+    if(type === "enForms"){
+        const EnForms = sessionStorage.getItem('@ignite:enForms')
         return EnForms ? JSON.parse(EnForms) : null
-    }else{
-        const PaymentMethod = sessionStorage.getItem('PaymentMethod')
+
+    }
+    
+    else{
+        const PaymentMethod = sessionStorage.getItem('@ignite:paymentMethod')
         return PaymentMethod ? JSON.parse(PaymentMethod) : null
     }
 }

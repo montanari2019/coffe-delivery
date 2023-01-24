@@ -1,14 +1,15 @@
 import { Action } from "@remix-run/router"
 import { CoffeItenContext } from "../../context/CoffeContext/@types"
 import { ActionTypes } from "./actions"
+import { produce } from "immer"
 
 
-
-export function CoffeReducer(state: CoffeItenContext[], action: any){
+export function CoffeReducer(state: CoffeItenContext[], action: any) {
 
 
     switch (action.type) {
         case ActionTypes.CREATE_SHOPPING_CART_COFFE:
+
             let verifyDuplicity: boolean = false
 
             for (let index = 0; index < state.length; index++) {
@@ -24,62 +25,59 @@ export function CoffeReducer(state: CoffeItenContext[], action: any){
 
             if (verifyDuplicity === true) {
 
-                const newCoffes = state.map((coffe) => {
-                    console.log("item: ", action.payload.iten.quant)
-                    if (coffe.id === action.payload.iten.id) {
-                        return { ...coffe, quant: coffe.quant + action.payload.iten.quant }
-                    } else {
 
-                        return coffe
-                    }
+                const coffeIndex = state.findIndex((element) => element.id === action.payload.iten.id)
+
+                if (coffeIndex < 0) {
+                    return state
+                }
+
+                return produce(state, (draft) => {
+                    draft[coffeIndex].quant = (draft[coffeIndex].quant + action.payload.iten.quant)
                 })
-
-                console.log("New coffes: ", [...newCoffes])
-
-                return [...newCoffes]
 
             } else {
 
-                return [...state, action.payload.iten]
+
+                return produce(state, (draft) => {
+                    draft.push(action.payload.iten)
+                })
 
             }
 
         case ActionTypes.UPDATE_SHOPING_CART_COFFE:
             if (action.payload.typeIten === "Decrease") {
-                const newListCoffeDecrese: CoffeItenContext[] = state.map((index) => {
-                    if (index.id === action.payload.idIten) {
-                        if (index.quant > 0) {
-                            return { ...index, quant: index.quant - 1 }
-                        } else {
-
-                            return index
-                        }
+          
+                const coffeIndex = state.findIndex((element) => element.id === action.payload.idIten)
+                if (coffeIndex < 0) {
+                    return state
+                }
 
 
-                    } else {
-                        return index
+                return produce(state, (draft) => {
+                    if (draft[coffeIndex].quant > 1) {
+                        draft[coffeIndex].quant = (draft[coffeIndex].quant - 1)
                     }
                 })
 
-                const verifyListCoffeQuantZero: CoffeItenContext[] = newListCoffeDecrese.filter((element) => element.quant !== 0)
-
-                return [...verifyListCoffeQuantZero]
             } else {
 
-                const newListCoffeIncrease: CoffeItenContext[] = state.map((index) => {
-                    if (index.id === action.payload.idIten) {
-                        return { ...index, quant: index.quant + 1 }
-                    } else {
-                        return index
-                    }
+                const coffeIndex = state.findIndex((element) => element.id === action.payload.idIten)
+                if (coffeIndex < 0) {
+                    return state
+                }
+
+
+                return produce(state, (draft) => {
+                    draft[coffeIndex].quant = (draft[coffeIndex].quant + 1)
                 })
 
-                return [...newListCoffeIncrease]
 
             }
 
 
         case ActionTypes.REMOVE_ITEM_SHOPING_CART_COFFE:
+    
             const coffesFilter: CoffeItenContext[] = state.filter((element) => element.id !== action.payload.idIten)
             return [...coffesFilter]
 
@@ -93,7 +91,7 @@ export function CoffeReducer(state: CoffeItenContext[], action: any){
 
 
     }
- 
- 
+
+
 
 }

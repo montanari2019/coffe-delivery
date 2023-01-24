@@ -70,7 +70,7 @@ export function ShoppingCart() {
 
             <CardCoffeSelct>
 
-                {coffeItenDetails.length === 0 ? <TitleNotItem>Não existe itens no carrinho</TitleNotItem> : <></>}
+                
 
                 {coffeItenDetails.map((coffe) => {
                     return (
