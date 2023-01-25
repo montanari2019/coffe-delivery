@@ -28,7 +28,7 @@ A aplicação consiste em um carrinho de comprar de uma cafeteria fictísia, ond
 A aplicação também foi desenvolvida com responsividade, com o intuíto de melhorar a experiência do usuário mobile.
 
 </br>
-<p> <a target="_blank" href="https://github.com/montanari2019/coffe-delivery">Click Aqui para acessar o reposítório da aplicação</a> </p>
+<p> <a target="_blank" href="https://coffe-delivery.onrender.com/">Click Aqui para acessar a aplicação</a> </p>
 
 # Demonstração
 
