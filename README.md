@@ -47,7 +47,7 @@ A aplicação também foi desenvolvida com responsividade, com o intuíto de mel
 
 <ul>
    <li>
-    <a target="_blank" href="https://create-react-app.dev/">React Create App</a>
+    <a target="_blank" href="https://vitejs.dev/">Vite</a>
 
    </li>
       <li>
